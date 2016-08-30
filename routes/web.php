@@ -18,6 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-    Route::get('/', 'Admin\HomeController@index');
+Route::group(['prefix' => 'staff', 'middleware' => 'auth'], function () {
+    Route::get('/', 'Staff\HomeController@index');
+    Route::get('/waiter', 'Staff\WaiterController@index');
+    Route::post('/waiter/open-spot', 'Staff\WaiterController@openSpot');
+    Route::get('/menu', 'Staff\MenuController@index');
+    Route::get('/menu/productpopup', 'Staff\MenuController@productpopup');
 });
